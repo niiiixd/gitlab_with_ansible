@@ -1,0 +1,8 @@
+---
+- hosts: gitlab
+  roles:
+    - install_gitlab_ce
+
+- hosts: gitlab_runner
+  roles:
+    - install_runner

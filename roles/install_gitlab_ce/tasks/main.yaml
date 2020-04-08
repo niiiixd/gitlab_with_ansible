@@ -1,0 +1,21 @@
+---
+- name: update packages
+  yum:
+    name: '*'
+    state: latest
+  tags: [update_pkd]
+- name: install postfix
+  yum:
+    name: postfix
+    state: present
+    notify: Restart postfix
+  tags: [install_postfix]
+- name: Add gitlab-ce repo
+  shell: curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
+  tags: [add_repo]
+- name: install gitlab
+  yum:
+    name: gitlab-ce
+    state: present
+  tags: [install_gitlab]
+  
